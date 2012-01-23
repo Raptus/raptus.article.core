@@ -1,6 +1,11 @@
 Changelog
 =========
 
+2.0b9 (2012-01-23)
+------------------
+
+* plone 4.1 compatibility by importing cmfcore permissions
+
 2.0b8 (2011-03-21)
 ------------------
 

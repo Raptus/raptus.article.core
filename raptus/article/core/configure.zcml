@@ -8,6 +8,9 @@
     
     <five:registerPackage package="." initialize=".initialize" />
 
+    <include package="Products.CMFCore" file="permissions.zcml"
+             zcml:condition="have plone-41" />
+
     <!-- Include the sub-packages that use their own configure.zcml files. -->
     <include file="meta.zcml" />
     <include file="permissions.zcml" />
