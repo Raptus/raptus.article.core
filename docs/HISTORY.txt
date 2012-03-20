@@ -1,6 +1,13 @@
 Changelog
 =========
 
+2.0b10 (Unreleased)
+-------------------
+
+* Changed permission for view of articles from zope.Public to zope2.View
+  to prevent odd behaviour if accessing private article with title and
+  description hidden where a completely unstyled login form was presented
+
 2.0b9 (2012-01-23)
 ------------------
 

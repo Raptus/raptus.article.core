@@ -15,7 +15,7 @@
         for="..interfaces.IArticle"
         name="view"
         class=".view.View"
-        permission="zope.Public"
+        permission="zope2.View"
         />
 
     <browser:resource
