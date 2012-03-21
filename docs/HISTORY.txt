@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0b10 (Unreleased)
+2.0b10 (2012-03-21)
 -------------------
 
 * Changed permission for view of articles from zope.Public to zope2.View
