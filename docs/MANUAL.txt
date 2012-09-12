@@ -15,7 +15,7 @@ This manual will cover:
     - ZCML
     - Content
     - Interfaces
-    - Indices  
+    - Indices
     - Overrides
 - Package dependencies
 - Adding a new component
@@ -32,14 +32,14 @@ Introduction
 
 Target
 ------
-The main target of raptus.article is to provide the content editor with a 
+The main target of raptus.article is to provide the content editor with a
 pre configured set of layout parts (called components) which he may use to
 build his page layout. The Article content type provided by raptus.article.core
 is a drop in replacement for the default Page content type.
 
 Note that the components (layout parts) used by raptus.article are not linked
 directly to the zope 3 component architecture although they are built on it.
-We will use the word component for the components of raptus.article in the 
+We will use the word component for the components of raptus.article in the
 following document and will explicitly note if it is about a component of
 the zope 3 architecture.
 
@@ -50,7 +50,7 @@ The architecture of raptus.article makes heavy use of the zope 3 viewlet archite
 A component is basically a viewlet with some metadata like a title, a descriptive text
 and an image. The viewlets used by the components are bound to the marker interface of
 the view of the article content type which ensures that they are only rendered when viewing
-an article. The viewlets are also bound to a unique marker interface which makes it 
+an article. The viewlets are also bound to a unique marker interface which makes it
 possible to show and hide them in context by providing this interface or not.
 
 
@@ -68,7 +68,7 @@ Features / key benefits
 Components View
 ---------------
 The components view of is available for the article content type and is accessed through the
-content views tabs. The view is basically a enhanced and filtered version of the interfaces 
+content views tabs. The view is basically a enhanced and filtered version of the interfaces
 tab in the ZMI. It lists all registered and activated components by their title, description
 and image and allows to show or hide them. By saving the view simply sets or unsets the
 marker interfaces mapped to the components which will show or hide them in the view of the
@@ -169,7 +169,7 @@ The following interfaces are defined by raptus.article.core.
 - **IComponents** (Provides information about available and active components)
     - getComponents - method (Returns a list of available components)
     - activeComponents - method (Returns a list of the active components)
-    
+
 - **IComponent** (A component definition)
     - title - attribute (User friendly title of the component)
     - description - attribute (User friendly description of the component)
@@ -181,12 +181,12 @@ The following interfaces are defined by raptus.article.core.
     - filter - method (Returns a filtered list of components)
 
 - **IComponentSelection** (A component selection registering a component for selection on a content type)
-    
+
 - **IDefaultComponents** (Provider to define default components for newly created articles)
     - getComponents - method (Returns a list of components which should be activated)
-        
+
 - **IManageable** (Catalog results converter used for the manage macro for objects which are manageable)
-    - getList - method (Returns a list of dicts holding the specific links for viewing, editing, sorting 
+    - getList - method (Returns a list of dicts holding the specific links for viewing, editing, sorting
       and deleting the object based on a list of catalog brains)
 
 
@@ -311,6 +311,9 @@ List of dependencies between the different raptus.article packages
         * archetypes.schemaextender
         * plone.app.imaging
         * raptus.article.core
+* raptus.article.supersized
+    * raptus.article.core
+    * raptus.supersized
 
 
 Add new component
@@ -332,16 +335,16 @@ To do so we need an interface defining the functionality of the adapter which we
 in interfaces.py::
 
     from zope.interface import Interface
-    
+
     class IMyContents(Interface):
         """ Provider for mycontent objects contained in an article
         """
-    
+
         def getMyContents(**kwargs):
             """ Returns a list of mycontents (catalog brains)
             """
 
-Now we write an adapter implementing this interface and adapting IArticle and place it in 
+Now we write an adapter implementing this interface and adapting IArticle and place it in
 adapters.py::
 
     from zope import interface, component
@@ -356,10 +359,10 @@ adapters.py::
         """
         interface.implements(IMyContents)
         component.adapts(IArticle)
-    
+
         def __init__(self, context):
             self.context = context
-        
+
         def getMyContents(self, **kwargs):
             """ Returns a list of MyContent (catalog brains)
             """
@@ -380,11 +383,11 @@ a new field called **components** is required. We therefor have to alter the sch
 of the MyContent class and add one new field::
 
     ...
-    
+
     from raptus.article.core.componentselection import ComponentSelectionWidget
-    
+
     ...
-    
+
     atapi.LinesField('components',
         enforceVocabulary = True,
         vocabulary_factory = 'componentselectionvocabulary',
@@ -395,7 +398,7 @@ of the MyContent class and add one new field::
             label= _(u'label_component_selection', default=u'Component selection'),
         )
     ),
-    
+
     ...
 
 To allow the component to search for the MyContent objects who have him selected
@@ -406,7 +409,7 @@ to register a new indexer for this field which we place in index.py::
     from plone.indexer.interfaces import IIndexer
     from Products.ZCatalog.interfaces import IZCatalog
     from my.content.interfaces import IMyComponent
-    
+
     class Index(object):
         interface.implements(IIndexer)
         component.adapts(IMyContent, IZCatalog)
@@ -417,7 +420,7 @@ to register a new indexer for this field which we place in index.py::
 
 We also have to register this index using zcml::
 
-    <adapter 
+    <adapter
       factory=".index.Index"
       name="component" />
 
@@ -425,7 +428,7 @@ And if we would like to have all available components selected in the components
 we have to register a default provider for archetypes which is already implemented in
 raptus.article.core and only has to be registered in zcml::
 
-    <adapter 
+    <adapter
       factory="raptus.article.core.componentselection.ComponentSelectionDefault"
       for=".interfaces.IMyContent"
       name="components" />
@@ -451,9 +454,9 @@ Marker interface
 So we first create our marker interface and place it in browser/mycontents.py::
 
     from zope import interface
-    
+
     ...
-    
+
     class IMyContentAbove(interface.Interface):
         """ Marker interface for the mycontent viewlet displayed above the content body
         """
@@ -464,24 +467,24 @@ The next step is to create the component adapter responsible for providing meta 
 the components view and linking it with the viewlet. We place also it in browser/mycontents.py::
 
     from zope import interface, component
-    
+
     from raptus.article.core import RaptusArticleMessageFactory as _
     from raptus.article.core import interfaces
-    
+
     ...
-    
+
     class ComponentAbove(object):
         """ Component which lists mycontent objects above the content body
         """
         interface.implements(interfaces.IComponent, interfaces.IComponentSelection)
         component.adapts(interfaces.IArticle)
-    
+
         title = _(u'MyContent above body')
         description = _(u'List of mycontents contained in the article above the content body.')
         image = '++resource++mycontent_above.gif'
         interface = IMyContentAbove
         viewlet = 'my.content.mycontent.above'
-    
+
         def __init__(self, context):
            self.context = context
 
@@ -489,7 +492,7 @@ Viewlet
 ```````
 Now we will write the corresponding viewlet class based on ViewletBase.
 
-Note that if we define our template with using the index attribute we will be able to overwrite 
+Note that if we define our template with using the index attribute we will be able to overwrite
 it using zcml in a theme project.
 
 ::
@@ -498,15 +501,15 @@ it using zcml in a theme project.
     from plone.app.layout.viewlets.common import ViewletBase
     from raptus.article.core.interfaces import IManageable
     from my.content.interfaces import IMyContents
-    
+
     ...
-    
+
     class ViewletAbove(ViewletBase):
         """ Viewlet listing the mycontents above the content body
         """
         index = ViewPageTemplateFile('mycontents.pt')
         component = 'mycontent.above'
-    
+
         def mycontents(self):
           provider = IMyContents(self.context)
           manageable = interfaces.IManageable(self.context)
@@ -544,22 +547,22 @@ The same we do for our second component and also place it in the file browser/my
     class IMyContentBelow(interface.Interface):
         """ Marker interface for the mycontent viewlet displayed below the content body
         """
-        
+
     class ComponentBelow(object):
         """ Component which lists mycontent objects below the content body
         """
         interface.implements(interfaces.IComponent, interfaces.IComponentSelection)
         component.adapts(interfaces.IArticle)
-    
+
         title = _(u'MyContent above body')
         description = _(u'List of mycontents contained in the article below the content body.')
         image = '++resource++mycontent_below.gif'
         interface = IMyContentBelow
         viewlet = 'my.content.mycontent.below'
-    
+
         def __init__(self, context):
            self.context = context
-    
+
     class ViewletBelow(ViewletAbove):
         """ Viewlet listing the mycontents below the content body
         """
@@ -573,42 +576,42 @@ Now we have to register our newly created components using zcml::
         xmlns="http://namespaces.zope.org/zope"
         xmlns:article="http://namespaces.zope.org/article"
         i18n_domain="raptus.article">
-    
+
       <article:component
         name="mycontent.above"
         component=".mycontents.ComponentAbove"
         selection="..interfaces.IMyContent"
         viewlet=".mycontents.ViewletAbove"
         manager="plone.app.layout.viewlets.interfaces.IAboveContentBody" />
-    
+
       <article:component
         name="mycontent.below"
         component=".mycontents.ComponentBelow"
         selection="..interfaces.IMyContent"
         viewlet=".mycontents.ViewletBelow"
         manager="plone.app.layout.viewlets.interfaces.IBelowContentBody" />
-    
+
     </configure>
 
 
 Update profile
 --------------
-Last but not least we edit our generic setup profile. First we have to add MyContent to the 
-addable types of the Article to make it possible to add MyContent objects in articles. To do 
+Last but not least we edit our generic setup profile. First we have to add MyContent to the
+addable types of the Article to make it possible to add MyContent objects in articles. To do
 so we have to add the Article to the types.xml file and create a Article.xml in profiles/default/types.
 
 types.xml::
 
     <?xml version="1.0"?>
     <object name="portal_types" meta_type="Plone Types Tool">
-    
+
       ...
-    
+
       <object name="Article"
         meta_type="Factory-based Type Information with dynamic views" />
-    
+
       ...
-    
+
     </object>
 
 Article.xml::
@@ -626,18 +629,18 @@ Next we add our newly created viewlets into viewlets.xml to define their default
 
     <?xml version="1.0"?>
     <object>
-    
+
       ...
-    
+
       <order manager="plone.abovecontentbody" skinname="*">
         <viewlet name="my.content.mycontent.above" insert-before="*" />
       </order>
       <order manager="plone.belowcontentbody" skinname="*">
         <viewlet name="my.content.mycontent.below" insert-after="*" />
       </order>
-    
+
       ...
-    
+
     </object>
 
 FAQ
