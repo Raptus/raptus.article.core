@@ -1,6 +1,12 @@
 Changelog
 =========
 
+2.0b12 (unreleased)
+-------------------
+
+* Improved component filter to no longer update every viewlet when filtering
+  and sorting
+
 2.0b11 (2013-03-11)
 -------------------
 

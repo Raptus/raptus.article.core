@@ -1,5 +1,6 @@
 from zope import interface, component
 
+from zope.viewlet.interfaces import IViewlet
 from zope.publisher.interfaces.http import IHTTPRequest
 from zope.publisher.interfaces.browser import IBrowserView
 from plone.app.layout.viewlets import interfaces as viewletmanagers
@@ -41,12 +42,14 @@ class ComponentFilter(object):
             if not comp.interface.providedBy(self.context):
                 notprovided.append(comp.interface)
                 interface.alsoProvides(self.context, comp.interface)
+        view = component.getMultiAdapter((self.context, self.request), name=u'view')
         for name, iface in ORDERED_VIEWLET_MANAGERS:
-            manager = component.getMultiAdapter((self.context, self.request, component.getMultiAdapter((self.context, self.request), name=u'view')), iface, name=name)
-            manager.update()
-            for viewlet in manager.viewlets:
-                if hasattr(viewlet, '__name__'):
-                    order.append(viewlet.__name__)
+            manager = component.getMultiAdapter((self.context, self.request, view), iface, name=name)
+            viewlets = component.getAdapters((self.context, self.request, view, manager), IViewlet)
+            viewlets = manager.filter(viewlets)
+            viewlets = manager.sort(viewlets)
+            for name, viewlet in viewlets:
+                order.append(name)
         # no longer provide the interfaces previously set
         for iface in notprovided:
             interface.noLongerProvides(self.context, iface)
