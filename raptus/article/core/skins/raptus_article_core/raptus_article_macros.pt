@@ -13,15 +13,14 @@
                             hide item/hide|nothing;
                             gif python:exists('here/getZopeInfo')">
     <div class="manage"
-         i18n:domain="plone"
          tal:condition="python: not request.get('raptus_article_viewing', 0) and (edit or delete or up or down)"
          tal:attributes="data-id item/id|nothing">
       <a name="" tal:attributes="name item/anchor"></a>
-      <a href="" title="view"
+      <a href="" title="View"
          tal:condition="view"
          tal:attributes="href view"
          i18n:attributes="title label_view">
-        <img src="search_icon.png" alt="view"
+        <img src="search_icon.png" alt="View"
              tal:attributes="src python:'search_icon.'+(gif and 'gif' or 'png')"
              i18n:attributes="alt label_view"/>
       </a>

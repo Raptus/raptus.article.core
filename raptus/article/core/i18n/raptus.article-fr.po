@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: raptus.article\n"
-"POT-Creation-Date: 2011-03-21 15:37+0000\n"
+"POT-Creation-Date: 2013-07-01 15:23+0000\n"
 "PO-Revision-Date: 2010-01-11 14:03+0000\n"
 "Last-Translator: Steve Beyeler <sbeyeler@raptus.com>\n"
 "Language-Team: French <sbeyeler@raptus.com>\n"
@@ -17,61 +17,61 @@ msgstr ""
 "Domain: raptus.article\n"
 "X-Is-Fallback-For: fr-fr fr-be fr-ca fr-ch fr-lu fr-mc\n"
 
-#. Default: "An article"
 #: profiles/default/types/Article.xml
 msgid "An article"
 msgstr "Un article"
 
-#. Default: "Article"
 #: profiles/default/types/Article.xml
 msgid "Article"
 msgstr "Article"
 
-#. Default: "Component selection"
-#: browser/components.pt:14
+#: browser/components.pt:14 browser/manager.pt:16
 msgid "Component selection"
 msgstr "Choix des composants"
 
-#: browser/components.py:24
+#: browser/components.py:30
 msgid "Components saved successfully"
 msgstr "Composants sauvegardés avec succès"
 
-#: browser/related.py:24
+#: browser/related.py:26
 msgid "List of related content of the article."
 msgstr "Liste du contenu associé à cet article."
 
-#. Default: "Related content"
-#: browser/related.pt:12
+#: browser/related.pt:12 browser/related.py:25
 msgid "Related content"
 msgstr "Contenu associé"
 
-#: browser/components.py:26
+#: browser/components.py:32
 msgid "Saving components failed"
 msgstr "Un erreur s'est produite lors de la sauvegarde des composants"
 
-#. Default: "Select the desired components shown by this article."
 #: browser/components.pt:18
 msgid "Select the desired components shown by this article."
 msgstr ""
 "Sélectionnez les composants que vous désirez afficher dans cet article."
 
-#. Default: "There are no components available."
 #: browser/components.pt:22
 msgid "There are no components available."
 msgstr "Aucun composant n'est disponible."
 
+#: browser/toggle.pt:10
+msgid ""
+"You changed one or more components. Changes will be lost when leaving this "
+"page without saving."
+msgstr ""
+
 #. Default: "Hide description"
-#: content/article.py:58
+#: content/article.py:59
 msgid "label_hide_description"
 msgstr "Masquer la description"
 
 #. Default: "Hide title"
-#: content/article.py:43
+#: content/article.py:44
 msgid "label_hide_title"
 msgstr "Masquer le titre"
 
 #. Default: "Save and view"
-#: browser/components.pt:52
+#: browser/components.pt:53
 msgid "label_save_and_view"
 msgstr "Sauvegarder et afficher"
 

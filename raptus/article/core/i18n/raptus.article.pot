@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-03-21 15:37+0000\n"
+"POT-Creation-Date: 2013-07-01 15:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,60 +17,60 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: raptus.article\n"
 
-#. Default: "An article"
 #: ./profiles/default/types/Article.xml
 msgid "An article"
 msgstr ""
 
-#. Default: "Article"
 #: ./profiles/default/types/Article.xml
 msgid "Article"
 msgstr ""
 
-#. Default: "Component selection"
 #: ./browser/components.pt:14
+#: ./browser/manager.pt:16
 msgid "Component selection"
 msgstr ""
 
-#: ./browser/components.py:24
+#: ./browser/components.py:30
 msgid "Components saved successfully"
 msgstr ""
 
-#: ./browser/related.py:24
+#: ./browser/related.py:26
 msgid "List of related content of the article."
 msgstr ""
 
-#. Default: "Related content"
 #: ./browser/related.pt:12
+#: ./browser/related.py:25
 msgid "Related content"
 msgstr ""
 
-#: ./browser/components.py:26
+#: ./browser/components.py:32
 msgid "Saving components failed"
 msgstr ""
 
-#. Default: "Select the desired components shown by this article."
 #: ./browser/components.pt:18
 msgid "Select the desired components shown by this article."
 msgstr ""
 
-#. Default: "There are no components available."
 #: ./browser/components.pt:22
 msgid "There are no components available."
 msgstr ""
 
+#: ./browser/toggle.pt:10
+msgid "You changed one or more components. Changes will be lost when leaving this page without saving."
+msgstr ""
+
 #. Default: "Hide description"
-#: ./content/article.py:58
+#: ./content/article.py:59
 msgid "label_hide_description"
 msgstr ""
 
 #. Default: "Hide title"
-#: ./content/article.py:43
+#: ./content/article.py:44
 msgid "label_hide_title"
 msgstr ""
 
 #. Default: "Save and view"
-#: ./browser/components.pt:52
+#: ./browser/components.pt:53
 msgid "label_save_and_view"
 msgstr ""
 
