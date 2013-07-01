@@ -1,7 +1,6 @@
 from urllib import quote_plus
 
 from zope.component import getMultiAdapter, queryMultiAdapter, getAdapters, queryUtility
-
 from zope.component.interfaces import IFactory
 from zope.i18n import translate
 from zope.app.container.constraints import checkFactory
@@ -12,19 +11,18 @@ from Acquisition import aq_inner
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 
 from plone.i18n.normalizer.interfaces import IIDNormalizer
-
 from plone.memoize.instance import memoize
-
 from plone.app.content.browser.folderfactories import _allowedTypes, FolderFactoriesView as BaseFolderFactoriesView
+
 
 class FolderFactoriesView(BaseFolderFactoriesView):
     """The folder_factories view - show addable types
     """
-    
+
     def default_page_can_constrain_types(self):
         constrain_types = ISelectableConstrainTypes(self.default_page_add_context(), None)
         return constrain_types is not None and constrain_types.canConstrainTypes()
-    
+
     @memoize
     def default_page_add_context(self):
         context_state = getMultiAdapter((self.context, self.request), name='plone_context_state')
@@ -43,19 +41,19 @@ class FolderFactoriesView(BaseFolderFactoriesView):
         """
         context = aq_inner(self.context)
         request = self.request
-        
+
         results = []
-        
+
         portal_state = getMultiAdapter((context, request), name='plone_portal_state')
         portal_url = portal_state.portal_url()
-        
+
         addContext = self.default_page_add_context()
         if not addContext:
             return results
         baseUrl = addContext.absolute_url()
-        
+
         allowedTypes = _allowedTypes(request, addContext)
-        
+
         # XXX: This is calling a pyscript (which we encourage people to customise TTW)
         exclude = addContext.getNotAddableTypes()
 

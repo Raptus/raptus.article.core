@@ -1,8 +1,10 @@
 from Products.CMFCore.utils import getToolByName
 
+
 DEPENDENCIES = (
     'DynamicHeader',
 )
+
 
 def install(context):
     """ Adds required catalog indexes, makes articles linkable in kupu and installs dependencies
@@ -10,11 +12,11 @@ def install(context):
     if context.readDataFile('raptus.article.core_install.txt') is None:
         return
     portal = context.getSite()
-    
+
     catalog = getToolByName(portal, 'portal_catalog')
     if 'component' not in catalog.indexes():
         catalog.addIndex('component', 'KeywordIndex', None)
-    
+
     inst = getToolByName(portal, 'portal_quickinstaller')
     for prod in DEPENDENCIES:
         if inst.isProductInstallable(prod):

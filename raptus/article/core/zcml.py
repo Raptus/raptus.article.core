@@ -12,6 +12,7 @@ from Products.Five.browser.metaconfigure import resource
 
 from raptus.article.core import interfaces
 
+
 class IComponentDirective(interface.Interface):
     """Register a component to be used by articles
     """
@@ -25,7 +26,7 @@ class IComponentDirective(interface.Interface):
         title=u'Component',
         description=u'',
         required=True)
-    
+
     viewlet = GlobalObject(
         title=u'Viewlet',
         description=u'',
@@ -63,7 +64,7 @@ def registerComponent(_context, name, component, viewlet, manager,
         adapter(_context, [component], interfaces.IComponentSelection, name=name, for_=[selection])
         
     viewletDirective(_context, component.viewlet, permission, for_=component.interface, manager=manager, class_=viewlet, view=interfaces.IArticleView)
-    
+
     if not image:
         path = os.path.abspath(str(_context.path(component.image.replace('++resource++', ''))))
         if os.path.isfile(path):

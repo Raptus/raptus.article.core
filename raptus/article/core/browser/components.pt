@@ -25,7 +25,8 @@
       </p>
 
       <form id="components" action="@@components" method="post"
-            tal:condition="python:len(view.components)">
+            tal:condition="python:len(view.components)"
+            tal:attributes="action view/action">
         <ul>
           <tal:item repeat="component view/components">
           <li tal:define="even repeat/component/even"
@@ -53,7 +54,6 @@
                  i18n:attributes="value label_save_and_view" />
         </div>
       </form>
-      <script type="text/javascript" src="++resource++components.js"></script>
 
     </tal:main-macro>
 </metal:main>

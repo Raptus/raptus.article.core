@@ -7,12 +7,13 @@ from Products.CMFPlone.CatalogTool import getObjPositionInParent
 
 from raptus.article.core.interfaces import IManageable
 
+
 class Manageable(object):
     """ Provider information dict used for the manage macro for objects which are manageable
     """
     interface.implements(IManageable)
     component.adapts(interface.Interface)
-    
+
     def __init__(self, context):
         self.context = context
         self.mship = getToolByName(self.context, 'portal_membership')
@@ -20,7 +21,7 @@ class Manageable(object):
         self.sort_url = '%s/article_moveitem?anchor=%%s&delta=%%s&item_id=%%s' % self.context.absolute_url()
         self.show_hide_url = '%s/@@article_showhideitem?anchor=%%s&action=%%s&uid=%%s&component=%%s' % self.context.absolute_url()
         self.delete = self.mship.checkPermission(permissions.DeleteObjects, self.context)
-    
+
     def getList(self, brains, component=''):
         """
         Returns a list of dicts holding the specific links for viewing, editing, sorting and

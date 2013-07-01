@@ -4,7 +4,10 @@ Changelog
 2.0b13 (unreleased)
 -------------------
 
-- Nothing changed yet.
+* Component management reimplementation
+* Added drag'n'drop support
+* Added component activated and deactivated events
+* PEP 8
 
 
 2.0b12 (2013-05-03)

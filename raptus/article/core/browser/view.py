@@ -5,11 +5,13 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from raptus.article.core import interfaces
 
+
 class View(BrowserView):
     """View of an article
     """
     implements(interfaces.IArticleView)
     template = ViewPageTemplateFile('view.pt')
-    
+
     def __call__(self):
+        self.request.set('raptus_article_viewing', True)
         return self.template()

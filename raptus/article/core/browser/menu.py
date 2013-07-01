@@ -7,8 +7,9 @@ from Products.CMFPlone.interfaces.constrains import IConstrainTypes
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 from Products.CMFPlone import PloneMessageFactory as _p
 
+
 class FactoriesMenu(BaseFactoriesMenu):
-    
+
     def getMenuItems(self, context, request):
         """Return menu item entries in a TAL-friendly form."""
         results = BaseFactoriesMenu.getMenuItems(self, context, request)
@@ -28,7 +29,7 @@ class FactoriesMenu(BaseFactoriesMenu):
             include = constraints.getImmediatelyAddableTypes()
             if len(include) < len(allowedTypes):
                 haveMore = True
-                
+
         results.append({'title'       : _p(u'folder_add_to_default_page', default=u'Add to default page'),
                         'description' : _p(u'Add content to the default page'),
                         'action'      : None,

@@ -14,7 +14,8 @@
                             gif python:exists('here/getZopeInfo')">
     <div class="manage"
          i18n:domain="plone"
-         tal:condition="python: edit or delete or up or down">
+         tal:condition="python: not request.get('raptus_article_viewing', 0) and (edit or delete or up or down)"
+         tal:attributes="data-id item/id|nothing">
       <a name="" tal:attributes="name item/anchor"></a>
       <a href="" title="view"
          tal:condition="view"

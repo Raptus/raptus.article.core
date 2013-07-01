@@ -48,7 +48,7 @@
     <permission value="View"/>
   </action>
   <action title="Components" action_id="components" category="folder"
-    url_expr="string:${folder_url}/@@components" visible="True"
+    url_expr="string:${folder_url}/@@components" visible="False"
     i18n:attributes="title" i18n:domain="plone">
     <permission value="raptus.article: Manage Components"/>
   </action>

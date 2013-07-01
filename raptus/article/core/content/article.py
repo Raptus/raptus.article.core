@@ -17,6 +17,7 @@ from raptus.article.core.interfaces import IArticle
 from raptus.article.core.config import PROJECTNAME
 from raptus.article.core import RaptusArticleMessageFactory as _
 
+
 ArticleSchema = folder.ATFolderSchema.copy() + atapi.Schema((
         atapi.TextField('text',
             required=False,
@@ -76,10 +77,11 @@ schemata.finalizeATCTSchema(ArticleSchema, folderish=True, moveDiscussion=True)
 ArticleSchema['relatedItems'].widget.visible = {'edit': 'visible', 'view': 'invisible'}
 ArticleSchema.changeSchemataForField('relatedItems', 'default')
 
+
 class Article(folder.ATFolder):
     """An article"""
     implements(IArticle)
-    
+
     portal_type = "Article"
     schema = ArticleSchema
 
@@ -88,9 +90,9 @@ class Article(folder.ATFolder):
     text = atapi.ATFieldProperty('text')
     hideTitle = atapi.ATFieldProperty('hideTitle')
     hideDescription = atapi.ATFieldProperty('hideDescription')
-    
+
     security = ClassSecurityInfo()
-    
+
     security.declarePublic('canSetDefaultPage')
     def canSetDefaultPage(self):
         """
@@ -98,6 +100,7 @@ class Article(folder.ATFolder):
         sense for topics.
         """
         return False
+
 
 try:
     from Products.DynamicHeader.interfaces import IDynamicHeader
