@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0b13 (unreleased)
+2.0b13 (2013-07-01)
 -------------------
 
 * Component management reimplementation
