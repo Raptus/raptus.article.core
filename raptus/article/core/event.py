@@ -41,12 +41,6 @@ class ComponentDeactivatedEvent(ComponentEvent):
     zope.interface.implements(IComponentDeactivatedEvent)
 
 
-def dispatch(*event):
-    zope.component.subscribers(event, None)
-
-zope.event.subscribers.append(dispatch)
-
-
 class Component(object):
     """ A component
     """

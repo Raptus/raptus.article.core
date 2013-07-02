@@ -4,7 +4,7 @@ Changelog
 2.0b14 (unreleased)
 -------------------
 
-- Nothing changed yet.
+* Removed event dispatch function to prevent double event notifications
 
 
 2.0b13 (2013-07-01)
