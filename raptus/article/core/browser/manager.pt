@@ -8,6 +8,7 @@
       i18n:domain="raptus.article">
 
   <div class=""
+       tal:omit-tag="not:view/components"
        tal:attributes="class string:viewletmanager viewletmanager-${view/name};
                        data-id view/name">
 
@@ -21,7 +22,8 @@
       </div>
     </div>
 
-    <div class="viewlets">
+    <div class="viewlets"
+         tal:omit-tag="not:view/components">
 
       <tal:viewlet repeat="viewlet view/viewlets">
         <div tal:replace="structure viewlet/render"></div>

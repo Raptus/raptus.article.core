@@ -5,6 +5,8 @@ var raptus_article = {
   toggle_selector: '.article-toggle',
   dragndrop_selector: 'ul.listing:has(> li.component > .manage a[href*="article_moveitem"]), ' +
                       'ul.gallery:has(> li.component > .manage a[href*="article_moveitem"]), ' +
+                      'div.tables:has(> div.component > .manage a[href*="article_moveitem"]), ' +
+                      'table.table > tbody:has(.manage a[href*="article_moveitem"]), ' +
                       'div.allcontent:has(> div.article > .manage a[href*="article_moveitem"])'
 };
 
@@ -222,13 +224,19 @@ var raptus_article = {
     if(!$.fn.sortable)
       return;
     var container = $(this);
+    var mng = '> .manage';
     if(container.is('div.allcontent'))
       var itm = '> div.article';
-    else
+    else if(container.is('div.tables'))
+      var itm = '> div.component';
+    else if(container.is('table.table > tbody')) {
+      var itm = '> tr:not(.add-row)';
+      var mng = '> td:last-child > .manage';
+    } else
       var itm = '> li.component';
     var columns = container.find(itm + '.last:first').index() + 1;
-    container.find(itm + ' > .manage a[href*="article_moveitem"]').hide();
-    container.find(itm + ' > .manage').prepend('<a class="move">░</a>');
+    container.find(itm + ' ' + mng + ' a[href*="article_moveitem"]').hide();
+    container.find(itm + ' ' + mng).prepend('<a class="move">░</a>');
     function update_classes() {
       var items = container.find(itm + ':not(.ui-sortable-helper)').removeClass('odd even first last');
       var l = columns;
@@ -248,7 +256,7 @@ var raptus_article = {
     }
     container.sortable({
       items: itm,
-      handle: '> .manage a.move',
+      handle: mng + ' a.move',
       start: function(e, ui) {
         ui.item.data('pos', ui.item.index());
       },
@@ -258,15 +266,15 @@ var raptus_article = {
       update: function(e, ui) {
         update_classes();
         var target = false;
-        var id = ui.item.find('> .manage').data('id');
+        var id = ui.item.find(mng).data('id');
         if(ui.item.index() > ui.item.data('pos'))
           var target = ui.item.prev();
         else if(ui.item.index() < ui.item.data('pos'))
           var target = ui.item.next();
         if(target) {
-          $.get(ui.item.find(' > .manage a[href*="article_moveitem"]').attr('href').split('?')[0].replace('article_moveitem', '@@article_move'), {
+          $.get(ui.item.find(mng + ' a[href*="article_moveitem"]').attr('href').split('?')[0].replace('article_moveitem', '@@article_move'), {
             item: id,
-            target: target.find('> .manage').data('id')
+            target: target.find(mng).data('id')
           }, function(data) {
             var updated = [];
             $('.manage[data-id="' + id + '"]').each(function() {

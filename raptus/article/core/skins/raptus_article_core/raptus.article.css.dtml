@@ -186,9 +186,9 @@
 
 #portal-top .article-manage .components {
   position:absolute;
-  left:0;
-  top:0;
-  right:0;
+  left:10px;
+  top:10px;
+  right:4em;
   z-index:10;
 }
 
@@ -209,6 +209,11 @@
 .article-manage.open:after {
   left:-15px;
   border-right-color:#fafafa;
+}
+
+#portal-top .article-manage.open:before,
+#portal-top .article-manage.open:after {
+  display:none;
 }
 
 .article-manage .components .close {
@@ -256,10 +261,8 @@
   -webkit-opacity:0.2;
 }
 
-#portal-top .article-manage .components {
-  left:1em;
-  top:1em;
-  right:4em;
+tr.ui-sortable-helper {
+  display:table;
 }
 
 .component {
