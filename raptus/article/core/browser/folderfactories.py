@@ -1,18 +1,15 @@
 from urllib import quote_plus
 
-from zope.component import getMultiAdapter, queryMultiAdapter, getAdapters, queryUtility
-from zope.component.interfaces import IFactory
-from zope.i18n import translate
-from zope.app.container.constraints import checkFactory
-from zope.app.publisher.interfaces.browser import AddMenu
-
 from Acquisition import aq_inner
-
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
-
+from plone.app.content.browser.folderfactories import (
+    _allowedTypes,
+    FolderFactoriesView as BaseFolderFactoriesView,
+)
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 from plone.memoize.instance import memoize
-from plone.app.content.browser.folderfactories import _allowedTypes, FolderFactoriesView as BaseFolderFactoriesView
+from zope.component import getMultiAdapter, queryMultiAdapter, queryUtility
+from zope.i18n import translate
 
 
 class FolderFactoriesView(BaseFolderFactoriesView):
@@ -35,7 +32,7 @@ class FolderFactoriesView(BaseFolderFactoriesView):
 
     def default_page_addable_types(self, include=None):
         """Return menu item entries in a TAL-friendly form.
-        
+
         Pass a list of type ids to 'include' to explicitly allow a list of
         types.
         """
@@ -79,15 +76,20 @@ class FolderFactoriesView(BaseFolderFactoriesView):
                 if icon:
                     icon = '%s/%s' % (portal_url, icon)
 
-                results.append({ 'id'           : typeId,
-                                 'title'        : t.Title(),
-                                 'description'  : t.Description(),
-                                 'action'       : url,
-                                 'selected'     : False,
-                                 'icon'         : icon,
-                                 'extra'        : {'id' : cssId, 'separator' : None, 'class' : cssClass},
-                                 'submenu'      : None,
-                                })
+                results.append({
+                    'id': typeId,
+                    'title': t.Title(),
+                    'description': t.Description(),
+                    'action': url,
+                    'selected': False,
+                    'icon': icon,
+                    'extra': {
+                        'id': cssId,
+                        'separator': None,
+                        'class': cssClass,
+                    },
+                    'submenu': None,
+                })
 
         # Sort the addable content types based on their translated title
         results = [(translate(ctype['title'], context=request), ctype) for ctype in results]
