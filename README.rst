@@ -60,14 +60,12 @@ installed. Just add the raptus.article.core on a separate line, like this::
 Next step is to add the zcml files to the "zcml" section of
 buildout.cfg. Look for the section that looks like this::
 
-    eggs =
-        Plone
+    zcml =
 
 This section might have additional lines if you have other zcml's already
 registered. Just add the raptus.article.core* on separate lines like this::
 
-    eggs =
-        Plone
+    zcml =
         raptus.article.core-meta
         raptus.article.core
         raptus.article.core-overrides
