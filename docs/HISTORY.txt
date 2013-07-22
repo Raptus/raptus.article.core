@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0b16 (unreleased)
+2.0b16 (2013-07-22)
 -------------------
 
 * CSS adjustments (added z-index for article-toggle and article-manage)
