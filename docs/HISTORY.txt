@@ -5,6 +5,7 @@ Changelog
 -------------------
 
 * CSS adjustments (added z-index for article-toggle and article-manage)
+* Plone 4.3 compatibility [tmassman]
 
 
 2.0b15 (2013-07-02)
