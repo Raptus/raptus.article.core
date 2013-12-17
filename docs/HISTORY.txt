@@ -7,6 +7,7 @@ Changelog
 * The article view now implements IViewView to support plone.app.discussion when
   manually activated see:
   http://stackoverflow.com/questions/10402918/can-not-activate-discussions-on-plone-dexterity-types-folderish
+* Replaced deprecated getIcon() with getIconExprObject()
 
 
 2.0b16 (2013-07-22)
