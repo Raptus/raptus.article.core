@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0b17 (unreleased)
+2.0b17 (2013-12-17)
 -------------------
 
 * The article view now implements IViewView to support plone.app.discussion when
