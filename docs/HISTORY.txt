@@ -4,9 +4,13 @@ Changelog
 2.0b18 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Show Link to plone.app.imagecropping croppingeditor if the component
+  adds a ``crop`` property to the manageable list items pointing to the
+  editor (eg path/to/image/@@croppingeditor?scalename=thumb)
 
-
+  The croppingeditor is opened in an overlay and the cropped image
+  gets updated when the editor is closed.
+  
 2.0b17 (2013-12-17)
 -------------------
 

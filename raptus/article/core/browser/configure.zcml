@@ -19,7 +19,7 @@
         />
 
     <browser:resource
-        name="components.js"
+        name="raptus.article.components.js"
         file="components.js"
         />
 
