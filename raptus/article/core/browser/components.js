@@ -301,7 +301,7 @@ var raptus_article = {
         var image = link.parents('li').find('.img img');
         var editor_url = link.attr('href');
         var image_url = editor_url.replace(/(\S*)@@croppingeditor\S*/, '$1');
-        var scale_name = editor_url.replace(/\S*scalename=([a-zA-Z0-9-]*)\S*/, '$1');
+        var scale_name = editor_url.replace(/\S*scalename=([a-zA-Z0-9_-]*)\S*/, '$1');
         
         link.prepOverlay({
             subtype:'ajax',

@@ -9,8 +9,11 @@ Changelog
   editor (eg path/to/image/@@croppingeditor?scalename=thumb)
 
   The croppingeditor is opened in an overlay and the cropped image
-  gets updated when the editor is closed.
-  
+  gets updated when the editor is closed. [fRiSi]
+
+- rename resource ``component.js`` to ``raptus.article.component.js`` to prevent
+  name conflicts. [fRiSi]
+   
 2.0b17 (2013-12-17)
 -------------------
 
