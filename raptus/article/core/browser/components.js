@@ -298,10 +298,16 @@ var raptus_article = {
   
   raptus_article.init_cropping = function() {
         var link = $(this);
-        var image = link.parents('li').find('.img img');
+        var image = link.parents('.item').find('.img img');
         var editor_url = link.attr('href');
         var image_url = editor_url.replace(/(\S*)@@croppingeditor\S*/, '$1');
-        var scale_name = editor_url.replace(/\S*scalename=([a-zA-Z0-9_-]*)\S*/, '$1');
+        var scale_name = editor_url.replace(/\S*scalename=([a-zA-Z0-9_-]*)\S*/, '$1')
+        fieldPattern = /\S*fieldname=([a-zA-Z0-9_-]*)\S*/;
+        result = fieldPattern.exec(editor_url)
+        field_name = 'image';
+        if (result != null) {
+            field_name = result[1];
+        }
         
         link.prepOverlay({
             subtype:'ajax',
@@ -309,7 +315,7 @@ var raptus_article = {
             closeselector:"input[name='form.button.Cancel']",
             config: {
                 onClose: function(e) {
-                    var newURL = image_url + '/@@images/image/' + scale_name;
+                    var newURL = image_url + '/@@images/' + field_name + '/' + scale_name;
                     image.attr('src', newURL);
                 }
             }
