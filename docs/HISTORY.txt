@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0b18 (unreleased)
+2.0b18 (2014-06-16)
 -------------------
 
 - Show Link to plone.app.imagecropping croppingeditor if the component
