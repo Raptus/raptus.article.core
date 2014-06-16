@@ -11,6 +11,7 @@
                             down item/down|nothing;
                             show item/show|nothing;
                             hide item/hide|nothing;
+                            crop item/crop|nothing;
                             gif python:exists('here/getZopeInfo')">
     <div class="manage"
          tal:condition="python: not request.get('raptus_article_viewing', 0) and (edit or delete or up or down)"
@@ -72,6 +73,15 @@
         <img src="++resource++article_hide.png" alt="Hide item in this component"
              i18n:attributes="alt title_hide_in_component" />
       </a>
+      <a href="" title="Crop image"
+         i18n:domain="raptus.article"
+         class="raptusManageCrop"
+         tal:condition="crop"
+         tal:attributes="href crop"
+         i18n:attributes="title title_crop">
+        <img src="++resource++plone.app.imagecropping.static/crop_icon.png" alt="Crop this image"
+             i18n:attributes="alt title_crop" />
+      </a>      
     </div>
   </metal:manage>
 </html>
