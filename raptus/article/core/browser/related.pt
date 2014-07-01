@@ -7,28 +7,31 @@
       tal:omit-tag="">
 
   <div class="related"
-       tal:condition="view/related"
+       tal:define="related view/related_items;
+                   ploneview nocall:context/@@plone;"
+       tal:condition="related"
        i18n:domain="raptus.article">
     <h2 i18n:translate="">
       Related content
     </h2>
     <ul class="visualNoMarker">
-      <li tal:repeat="item view/related">
-        <a href=""
-           tal:attributes="href string:${item/url};
-                           title item/description">
-          <img src="" alt=""
-               tal:condition="item/icon"
-               tal:attributes="src item/icon" />
-          <span tal:content="item/title">
-            Title
+      <li tal:repeat="item related">
+        <tal:define define="description item/Description;
+                            item_icon python:ploneview.getIcon(item);">
+          <a href=""
+             tal:attributes="href string:${item/getURL};
+                             title description">
+            <img tal:replace="structure item_icon/html_tag" /> 
+            <span tal:content="item/title">
+              Title
+            </span>
+          </a>
+          <span class="discreet"
+                tal:condition="description"
+                tal:content="description">
+            Description
           </span>
-        </a>
-        <span class="discreet"
-              tal:condition="item/description"
-              tal:content="item/description">
-          Description
-        </span>
+        </tal:define>
       </li>
     </ul>
   </div>
