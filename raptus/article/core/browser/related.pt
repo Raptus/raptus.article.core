@@ -22,7 +22,7 @@
              tal:attributes="href string:${item/getURL};
                              title description">
             <img tal:replace="structure item_icon/html_tag" /> 
-            <span tal:content="item/title">
+            <span tal:content="item/Title">
               Title
             </span>
           </a>
