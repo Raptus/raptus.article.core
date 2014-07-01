@@ -4,7 +4,11 @@ Changelog
 2.0b19 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Refactored the related items component of raptus articles (fixed issue #7).
+
+  The previous implementation was based on the deprecated python 
+  script named ``computeRelatedItems``, no more available 
+  on Plone 4.3.2. [davidemoro]
 
 
 2.0b18 (2014-06-16)
