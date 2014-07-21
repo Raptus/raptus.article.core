@@ -5,6 +5,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFCore import permissions
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.app.layout.viewlets.common import ViewletBase
+from plone.app.layout.viewlets.content import ContentRelatedItems
 from plone.memoize.instance import memoize
 
 from raptus.article.core import RaptusArticleMessageFactory as _
@@ -32,28 +33,10 @@ class Component(object):
         self.context = context
 
 
-class Viewlet(ViewletBase):
+class Viewlet(ContentRelatedItems):
     """ Viewlet listing the related items of the article
     """
     index = ViewPageTemplateFile('related.pt')
-
-    @property
-    @memoize
-    def related(self):
-        mship = getToolByName(self.context, 'portal_membership')
-        plone = component.getMultiAdapter((self.context, self.request), name=u'plone')
-        use_view_action = getToolByName(self.context, 'portal_properties').site_properties.get('typesUseViewActionInListings', ())
-        related = self.context.computeRelatedItems()
-        items = []
-        for obj in related:
-            url = obj.portal_type in use_view_action and '%s/view' or '%s'
-            item = {'id': obj.getId(),
-                    'title': obj.Title(),
-                    'description': obj.Description(),
-                    'url': url % obj.absolute_url(),
-                    'icon': plone.getIcon(obj).url}
-            items.append(item)
-        return items
 
 
 class RelatedItemsViewlet(ViewletBase):
