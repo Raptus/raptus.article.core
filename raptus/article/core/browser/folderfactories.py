@@ -72,7 +72,7 @@ class FolderFactoriesView(BaseFolderFactoriesView):
                     url = '%s/+/%s' % (baseUrl, factory,)
                 else:
                     url = '%s/createObject?type_name=%s' % (baseUrl, quote_plus(typeId),)
-                icon = t.getIcon()
+                icon = t.getIconExprObject()
                 if icon:
                     icon = '%s/%s' % (portal_url, icon)
 

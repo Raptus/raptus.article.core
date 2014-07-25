@@ -1,12 +1,42 @@
 Changelog
 =========
 
-2.0b17 (unreleased)
+2.0 (unreleased)
+----------------
+
+- Nothing changed yet.
+
+
+2.0b19 (2014-07-22)
+-------------------
+
+- Refactored the related items component of raptus articles (fixed issue #7).
+
+  The previous implementation was based on the deprecated python 
+  script named ``computeRelatedItems``, no more available 
+  on Plone 4.3.2. [davidemoro]
+
+
+2.0b18 (2014-06-16)
+-------------------
+
+- Show Link to plone.app.imagecropping croppingeditor if the component
+  adds a ``crop`` property to the manageable list items pointing to the
+  editor (eg path/to/image/@@croppingeditor?scalename=thumb)
+
+  The croppingeditor is opened in an overlay and the cropped image
+  gets updated when the editor is closed. [fRiSi]
+
+- rename resource ``component.js`` to ``raptus.article.component.js`` to prevent
+  name conflicts. [fRiSi]
+   
+2.0b17 (2013-12-17)
 -------------------
 
 * The article view now implements IViewView to support plone.app.discussion when
   manually activated see:
   http://stackoverflow.com/questions/10402918/can-not-activate-discussions-on-plone-dexterity-types-folderish
+* Replaced deprecated getIcon() with getIconExprObject()
 
 
 2.0b16 (2013-07-22)

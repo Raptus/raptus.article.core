@@ -7,7 +7,8 @@ var raptus_article = {
                       'ul.gallery:has(> li.component > .manage a[href*="article_moveitem"]), ' +
                       'div.tables:has(> div.component > .manage a[href*="article_moveitem"]), ' +
                       'table.table > tbody:has(.manage a[href*="article_moveitem"]), ' +
-                      'div.allcontent:has(> div.article > .manage a[href*="article_moveitem"])'
+                      'div.allcontent:has(> div.article > .manage a[href*="article_moveitem"])',
+  crop_selector: '.manage .raptusManageCrop'
 };
 
 (function($) {
@@ -21,6 +22,7 @@ var raptus_article = {
     container.find(raptus_article.manage_selector).each(raptus_article.init_manage);
     container.find(raptus_article.toggle_selector).each(raptus_article.init_toggle);
     container.find(raptus_article.dragndrop_selector).each(raptus_article.init_dragndrop);
+    container.find(raptus_article.crop_selector).each(raptus_article.init_cropping);
     if(!bound)
       $(window).unbind('unload').bind('unload,', raptus_article.confirm)
                .unbind('beforeunload').bind('beforeunload', function() {
@@ -293,6 +295,32 @@ var raptus_article = {
       }
     });
   };
+  
+  raptus_article.init_cropping = function() {
+        var link = $(this);
+        var image = link.parents('.item').find('.img img');
+        var editor_url = link.attr('href');
+        var image_url = editor_url.replace(/(\S*)@@croppingeditor\S*/, '$1');
+        var scale_name = editor_url.replace(/\S*scalename=([a-zA-Z0-9_-]*)\S*/, '$1')
+        fieldPattern = /\S*fieldname=([a-zA-Z0-9_-]*)\S*/;
+        result = fieldPattern.exec(editor_url)
+        field_name = 'image';
+        if (result != null) {
+            field_name = result[1];
+        }
+        
+        link.prepOverlay({
+            subtype:'ajax',
+            formselector:'#coords',
+            closeselector:"input[name='form.button.Cancel']",
+            config: {
+                onClose: function(e) {
+                    var newURL = image_url + '/@@images/' + field_name + '/' + scale_name;
+                    image.attr('src', newURL);
+                }
+            }
+        });            
+  }
 
   $(document).ready(function() {
     raptus_article.init($('body'));
