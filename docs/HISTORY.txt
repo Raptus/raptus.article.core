@@ -4,6 +4,10 @@ Changelog
 2.0 (unreleased)
 ----------------
 
+- Introduce a new marker interface (INamedDefaultComponent) and ready
+  to use adapter implementation to allow simple registrations of default
+  components by using named adapters (this fixes #5) [skaeser]
+
 - Make textfield a primary field (as it's the case for default document type)
   to prevent certain versions of plone's TinyMCE integration to raise
   AttributeErrors when searching for anchors (this fixes #3) [fRISi]
