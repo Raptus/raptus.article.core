@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0 (unreleased)
+2.0 (2014-07-28)
 ----------------
 
 - Introduce a new marker interface (INamedDefaultComponent) and ready
