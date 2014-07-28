@@ -4,7 +4,9 @@ Changelog
 2.0 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Make textfield a primary field (as it's the case for default document type)
+  to prevent certain versions of plone's TinyMCE integration to raise
+  AttributeErrors when searching for anchors (this fixes #3) [fRISi]
 
 
 2.0b19 (2014-07-22)
@@ -12,8 +14,8 @@ Changelog
 
 - Refactored the related items component of raptus articles (fixed issue #7).
 
-  The previous implementation was based on the deprecated python 
-  script named ``computeRelatedItems``, no more available 
+  The previous implementation was based on the deprecated python
+  script named ``computeRelatedItems``, no more available
   on Plone 4.3.2. [davidemoro]
 
 
@@ -29,7 +31,7 @@ Changelog
 
 - rename resource ``component.js`` to ``raptus.article.component.js`` to prevent
   name conflicts. [fRiSi]
-   
+
 2.0b17 (2013-12-17)
 -------------------
 

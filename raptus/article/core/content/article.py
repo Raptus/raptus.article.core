@@ -20,6 +20,7 @@ from raptus.article.core import RaptusArticleMessageFactory as _
 
 ArticleSchema = folder.ATFolderSchema.copy() + atapi.Schema((
         atapi.TextField('text',
+            primary=True,
             required=False,
             searchable=True,
             storage = atapi.AnnotationStorage(),
