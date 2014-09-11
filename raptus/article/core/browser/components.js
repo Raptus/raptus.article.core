@@ -298,13 +298,13 @@ var raptus_article = {
 
   raptus_article.init_cropping = function() {
         var link = $(this);
-        var image = link.parents('.item').find('.img img');
+        var image = link.parents('.component').find('.img img');
         var editor_url = link.attr('href');
         var image_url = editor_url.replace(/(\S*)@@croppingeditor\S*/, '$1');
         var scale_name = editor_url.replace(/\S*scalename=([a-zA-Z0-9_-]*)\S*/, '$1')
-        fieldPattern = /\S*fieldname=([a-zA-Z0-9_-]*)\S*/;
-        result = fieldPattern.exec(editor_url)
-        field_name = 'image';
+        var fieldPattern = /\S*fieldname=([a-zA-Z0-9_-]*)\S*/;
+        var result = fieldPattern.exec(editor_url)
+        var field_name = 'image';
         if (result != null) {
             field_name = result[1];
         }

@@ -4,8 +4,9 @@ Changelog
 2.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
-
+- Support different image fieldnames within the same component (fixed js scope
+  bug) and use .component as selector for an item (cropping is compatible with
+  raptus.article.listing and gallery this way)
 
 2.0 (2014-07-28)
 ----------------
