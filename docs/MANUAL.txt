@@ -185,6 +185,8 @@ The following interfaces are defined by raptus.article.core.
 - **IDefaultComponents** (Provider to define default components for newly created articles)
     - getComponents - method (Returns a list of components which should be activated)
 
+- **INamedDefaultComponent** (Provider to define a default component using a named adapter)
+
 - **IManageable** (Catalog results converter used for the manage macro for objects which are manageable)
     - getList - method (Returns a list of dicts holding the specific links for viewing, editing, sorting
       and deleting the object based on a list of catalog brains)

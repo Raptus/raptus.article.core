@@ -63,6 +63,11 @@ class IDefaultComponents(Interface):
         """
 
 
+class INamedDefaultComponent(Interface):
+    """ Provider to define a default component using a named adapter
+    """
+
+
 class IManageable(Interface):
     """ Provider information dict used for the manage macro for objects which are manageable
     """

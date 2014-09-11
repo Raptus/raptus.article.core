@@ -1,10 +1,32 @@
 Changelog
 =========
 
-2.0b19 (unreleased)
--------------------
+2.1 (unreleased)
+----------------
 
 - Nothing changed yet.
+
+
+2.0 (2014-07-28)
+----------------
+
+- Introduce a new marker interface (INamedDefaultComponent) and ready
+  to use adapter implementation to allow simple registrations of default
+  components by using named adapters (this fixes #5) [skaeser]
+
+- Make textfield a primary field (as it's the case for default document type)
+  to prevent certain versions of plone's TinyMCE integration to raise
+  AttributeErrors when searching for anchors (this fixes #3) [fRISi]
+
+
+2.0b19 (2014-07-22)
+-------------------
+
+- Refactored the related items component of raptus articles (fixed issue #7).
+
+  The previous implementation was based on the deprecated python
+  script named ``computeRelatedItems``, no more available
+  on Plone 4.3.2. [davidemoro]
 
 
 2.0b18 (2014-06-16)
@@ -19,7 +41,7 @@ Changelog
 
 - rename resource ``component.js`` to ``raptus.article.component.js`` to prevent
   name conflicts. [fRiSi]
-   
+
 2.0b17 (2013-12-17)
 -------------------
 
