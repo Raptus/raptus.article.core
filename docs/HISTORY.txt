@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.1 (unreleased)
+2.1 (2014-10-23)
 ----------------
 
 - Support different image fieldnames within the same component (fixed js scope
