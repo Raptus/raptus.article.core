@@ -4,7 +4,8 @@ Changelog
 2.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Move translations to ``locales/`` to be able to add/modify
+  translations in none-Zope2 packages too [fRiSi]
 
 
 2.1 (2014-10-23)
